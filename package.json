@@ -1,0 +1,22 @@
+{
+  "name": "meteomahh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node-dev index.js --no-notify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.3",
+    "node-fetch": "^2.6.7",
+    "pg": "^8.7.3"
+  }
+}

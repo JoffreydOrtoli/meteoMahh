@@ -1,0 +1,27 @@
+14:31:15,/,ReferenceError: D:\projets code\MeteoMahh\app\views\meteo.ejs:20
+    18| 		<form class="search" autocomplete="off" action="/" method="get">
+    19| 			<input name="q" placeholder="cherchez une ville" class="search_input" type="text" />
+ >> 20| 			<option value="<%= match_list.values %>"><%= match_list.values %></option>
+    21| 			<!-- <button class="search_btn" type="submit">Chercher</button> -->
+    22| 		</form>
+    23| 		<div id="match_list"></div>
+
+match_list is not defined
+14:32:45,/,ReferenceError: D:\projets code\MeteoMahh\app\views\meteo.ejs:20
+    18| 		<form class="search" autocomplete="off" action="/" method="get">
+    19| 			<input name="q" placeholder="cherchez une ville" class="search_input" type="text" />
+ >> 20| 			<option value="<%= matchList.values %>"><%= matchList.values %></option>
+    21| 			<!-- <button class="search_btn" type="submit">Chercher</button> -->
+    22| 		</form>
+    23| 		<div id="match_list"></div>
+
+matchList is not defined
+22:43:46,/?q=Toulouse,TypeError: D:\projets code\MeteoMahh\app\views\meteo.ejs:62
+    60| 			<div>
+    61| 				<p>03:00</p>
+ >> 62| 				<img src="<%= forecasts[3].hour[3].condition.icon %>">
+    63| 				<p><%= forecasts[3].hour[3].temp_c %></p>
+    64| 			</div>
+    65| 			<div>
+
+Cannot read properties of undefined (reading 'hour')

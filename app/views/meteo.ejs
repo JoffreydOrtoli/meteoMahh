@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../statics/style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+	integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+	crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+   	integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+   	crossorigin=""></script>
+	<script defer src="/statics/js/autocomplete.js"></script>
+	<script defer src="/statics/js/map.js"></script>
+	<title>MétéoMahh</title>
+</head>
+<body>
+	<div id="container">
+		<h1>MétéoMahh</h1>
+		<form class="search" autocomplete="off" action="/" method="get">
+			<input name="q" placeholder="cherchez une ville" class="search_input" type="text" />
+			<div id="suggestion"></div>
+		</form>
+		<div id="weather-map">
+			<div id="weather-infos">
+				<h2><%= location.name %> - <%= location.country %></h2>
+				<p><%= location.localtime %></p>
+				<h3><%=currentWeather.temp_c%>°</h3>
+				<p><%=forecasts[0].day.mintemp_c%>° / <%=forecasts[0].day.maxtemp_c%>°</p>
+				<button id="day-click">Journée</button>
+				<div id="image-center"><img src="<%=currentWeather.condition.icon%>"> / <%=currentWeather.condition.text%></div>
+				<p>Levé du soleil: <%=forecasts[0].astro.sunrise%></p>
+				<p>Couché du soleil: <%=forecasts[0].astro.sunset%></p>
+				<p>Vent <%=currentWeather.wind_kph%> km/h direction <%=currentWeather.wind_dir %></p>
+				<p>humidité <%=currentWeather.humidity%>% / précipitations <%=currentWeather.precip_mm%> mm</p>
+				<p id="lat-long">latitude: <%= location.lat %> / longitude: <%= location.lon %></p>
+			</div>
+			<div id="map"></div>
+		</div>
+		<div id="meteo-day">
+			<div class="toggle display">
+				<p>00:00</p>
+				<img src="<%= forecasts[0].hour[0].condition.icon %>">
+				<p><%= forecasts[0].hour[0].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>01:00</p>
+				<img src="<%= forecasts[0].hour[1].condition.icon %>">
+				<p><%= forecasts[0].hour[1].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>02:00</p>
+				<img src="<%= forecasts[0].hour[2].condition.icon %>">
+				<p><%= forecasts[0].hour[2].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>03:00</p>
+				<img src="<%= forecasts[0].hour[3].condition.icon %>">
+				<p><%= forecasts[0].hour[3].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>04:00</p>
+				<img src="<%= forecasts[0].hour[4].condition.icon %>">
+				<p><%= forecasts[0].hour[4].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>05:00</p>
+				<img src="<%= forecasts[0].hour[5].condition.icon %>">
+				<p><%= forecasts[0].hour[5].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>06:00</p>
+				<img src="<%= forecasts[0].hour[6].condition.icon %>">
+				<p><%= forecasts[0].hour[6].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>07:00</p>
+				<img src="<%= forecasts[0].hour[7].condition.icon %>">
+				<p><%= forecasts[0].hour[7].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>08:00</p>
+				<img src="<%= forecasts[0].hour[8].condition.icon %>">
+				<p><%= forecasts[0].hour[8].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>09:00</p>
+				<img src="<%= forecasts[0].hour[9].condition.icon %>">
+				<p><%= forecasts[0].hour[9].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>11:00</p>
+				<img src="<%= forecasts[0].hour[11].condition.icon %>">
+				<p><%= forecasts[0].hour[11].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>12:00</p>
+				<img src="<%= forecasts[0].hour[12].condition.icon %>">
+				<p><%= forecasts[0].hour[12].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>13:00</p>
+				<img src="<%= forecasts[0].hour[13].condition.icon %>">
+				<p><%= forecasts[0].hour[13].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>14:00</p>
+				<img src="<%= forecasts[0].hour[14].condition.icon %>">
+				<p><%= forecasts[0].hour[14].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>15:00</p>
+				<img src="<%= forecasts[0].hour[15].condition.icon %>">
+				<p><%= forecasts[0].hour[15].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>16:00</p>
+				<img src="<%= forecasts[0].hour[16].condition.icon %>">
+				<p><%= forecasts[0].hour[16].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>17:00</p>
+				<img src="<%= forecasts[0].hour[17].condition.icon %>">
+				<p><%= forecasts[0].hour[17].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>18:00</p>
+				<img src="<%= forecasts[0].hour[18].condition.icon %>">
+				<p><%= forecasts[0].hour[18].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>19:00</p>
+				<img src="<%= forecasts[0].hour[19].condition.icon %>">
+				<p><%= forecasts[0].hour[19].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>20:00</p>
+				<img src="<%= forecasts[0].hour[20].condition.icon %>">
+				<p><%= forecasts[0].hour[20].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>21:00</p>
+				<img src="<%= forecasts[0].hour[21].condition.icon %>">
+				<p><%= forecasts[0].hour[21].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>22:00</p>
+				<img src="<%= forecasts[0].hour[22].condition.icon %>">
+				<p><%= forecasts[0].hour[22].temp_c %></p>
+			</div>
+			<div class="toggle display">
+				<p>23:00</p>
+				<img src="<%= forecasts[0].hour[23].condition.icon %>">
+				<p><%= forecasts[0].hour[23].temp_c %></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
