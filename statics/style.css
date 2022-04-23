@@ -8,6 +8,12 @@ body {
     margin: auto;
 }
 
+#suggestion {
+    position: absolute;
+    z-index: 2;
+    right: 52%;
+}
+
 #weather-infos {
     width: 46%;
 }
@@ -19,15 +25,15 @@ body {
 }
 
 h1 {
-    font-size: 2.6em;
+    font-size: 2.4em;
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 1.6em;
 }
 
 h3 {
-    font-size: 6em;
+    font-size: 4em;
     margin: 0.2em;
 }
 
@@ -39,7 +45,8 @@ h3 {
 }
 
 #map { 
-    width: 46%; 
+    width: 44%;
+    height: auto; 
 }
 
 #meteo-day {

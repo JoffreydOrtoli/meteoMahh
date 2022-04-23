@@ -1,7 +1,15 @@
 require("dotenv").config();
 const json = require('../data/worldCity.json');
 const axios = require('axios');
+
 const weatherController = {
+
+    /**
+     * function de demande de données météo à l'API
+     * @param {*} req l'API meteo avec paramètres
+     * @param {*} res les données sous forme d'objet
+     * @returns 
+     */
     async getMeteo(req, res){
         const response = await axios.get(process.env.API_URL, { 
             params: { 
@@ -10,10 +18,13 @@ const weatherController = {
                 days: 3
             }  
         });
+        // s'il y a une erreur 
         if(response.status != 200){
             console.error(response.status);
             return;
         }
+
+        // envoies des données
         const location = response.data.location;
         const currentWeather = response.data.current;
         const forecasts = response.data.forecast.forecastday;
@@ -111,7 +122,7 @@ const weatherController = {
                 currentWeather.condition.text = "Brouillard";
                 break;
         }
-        res.render("meteo", { location, currentWeather, forecasts});
+        res.render("meteo", { location, currentWeather, forecasts, json});
     },
 };
 

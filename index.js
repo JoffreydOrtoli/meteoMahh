@@ -3,10 +3,11 @@ const express = require('express');
 const cors = require('cors');
 
 const router = require('./app/router.js');
-
+// express
 const PORT = process.env.PORT || 3333;
 const app = express();
 
+// vues et statique
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
 app.use('/statics', express.static('statics'));
