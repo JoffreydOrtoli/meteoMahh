@@ -1,7 +1,0 @@
-10:42:16,/,Error: D:\projets code\MeteoMahh\app\views\login.ejs:1
- >> 1| <%- include('./partials/header'); %>
-    2| <%- include('./partials/nav'); %>
-    3| <section class="hero is-primary is-fullheight">
-    4|     <div class="hero-body">
-
-Could not find the include file "./partials/header"
